@@ -1,5 +1,5 @@
 #!/bin/bash
-REPL="carthagenet"
+REPL="mainnet"
 CHART="TEZOS_${REPL}.chart.py"
 CONF="TEZOS_${REPL}.conf"
 HEALTH="TEZOS_${REPL}.health.conf"

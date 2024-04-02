@@ -31,6 +31,7 @@ Open `convert.sh` and adapt variable $REPL. Afterwards you can execute `convert.
 Run the deployment script and the corresponding files are installed in the correct directories.
 
 Edit 'health_alarm_notify.conf' and copy the file to /etc/netdata/
+chmod +r health_alarm_notify.conf
 
 Restart netdata service: `systemctl restart netdata`
 

@@ -44,16 +44,16 @@ class Service(LogService):
         try:
             data = {}
             data['validatedBlocks'] = 0
-            data['injectedAttestation'] = 0
-            data['injectedPreAttestation'] = 0
+            data['injectedAttestations'] = 0
+            data['injectedPreAttestations'] = 0
             data['injectedBlocks'] = 0
             for line in self._get_raw_data():
                 if search(r'head is now', line):
                     data['validatedBlocks'] += 1
                 if search(r'injected attestation', line):
-                    data['injectedAttestation'] += 1
+                    data['injectedAttestations'] += 1
                 if search(r'injected preattestation', line):
-                    data['injectedPreAttestation'] += 1
+                    data['injectedPreAttestations'] += 1
                 if search(r'round 0 injected', line):
                     data['injectedBlocks'] += 1
             return data

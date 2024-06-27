@@ -3,6 +3,7 @@
 SCRIPT_FILE="TEZOS_TEZOS_NETWORK.chart.py"
 CONFIG_FILE="TEZOS_TEZOS_NETWORK.conf"
 HEALTH_FILE="TEZOS_TEZOS_NETWORK.health.conf"
+HEALTH_ATT_FILE="TEZOS_TEZOS_NETWORK.health_attestations.conf"
 
 
 if [ $# -eq 0 ]; then
@@ -40,9 +41,12 @@ if [ $# -eq 2 ] || [ $# -eq 0 ]; then
 		cp $(dirname $0)/$CONFIG_FILE $ETC_DIR/$CONFIG_FILE &&
 		echo "Copying $HEALTH_FILE to $ETC_HEALTH_DIR" &&
 		cp $(dirname $0)/$HEALTH_FILE $ETC_HEALTH_DIR/$HELTH_FILE &&
+		echo "Copying $HEALTH_ATT_FILE to $ETC_HEALTH_DIR" &&
+		cp $(dirname $0)/$HEALTH_ATT_FILE $ETC_HEALTH_DIR/$HELTH_FILE &&
 		chown netdata:netdata $MODULES_DIR/$SCRIPT_FILE &&
 		chown netdata:netdata $ETC_DIR/$CONFIG_FILE &&
 		chown netdata:netdata $ETC_HEALTH_DIR/$HEALTH_FILE &&
+		chown netdata:netdata $ETC_HEALTH_DIR/$HEALTH_ATT_FILE &&
 		exit 0
 	fi
 fi

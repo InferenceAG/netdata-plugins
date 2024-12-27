@@ -4,20 +4,20 @@ from bases.FrameworkServices.LogService import LogService
 update_every = 10 
 retries = 3
 
-ORDER = ['execution', 'consensus', 'injected_preattestations', 'injected_blocks']
+ORDER = ['execution', 'consensus']
 
 CHARTS = {
     'execution': {
-        'options': [None, 'Execution', 'count', 'blocks',
-                    'blocks', 'line'],
+        'options': [None, 'Execution', 'count', 'execution_blocks',
+                    'execution_blocks', 'line'],
         'lines': [
-            ["execution", "blocks", 'absolute', 1, 1]
+            ["execution", "execution", 'absolute', 1, 1]
         ]},
     'consensus': {
-        'options': [None, 'Consensus', 'count', 'blocks',
-                    'blocks', 'line'],
+        'options': [None, 'Consensus', 'count', 'consensus_blocks',
+                    'consensus_blocks', 'line'],
         'lines': [
-            ["consensus", "blocks", 'absolute', 1, 1]
+            ["consensus", "consensus", 'absolute', 1, 1]
         ]},
 }
 
@@ -34,9 +34,9 @@ class Service(LogService):
             data['execution'] = 0
             data['consensus'] = 0
             for line in self._get_raw_data():
-                if search(r'Forkchoice requested sync to new head', line):
+                if search(r'Chain head was updated', line):
                     data['execution'] += 1
-                if search(r'Synced new block', line):
+                if search(r'Slot Event', line):
                     data['consensus'] += 1
             return data
         except (ValueError, AttributeError):

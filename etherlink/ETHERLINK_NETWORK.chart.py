@@ -14,13 +14,13 @@ CHARTS = {
             ["validatedBlocks", "blocks", 'absolute', 1, 1]
         ]},
     'rollup_applied_blueprints': {
-        'options': [None, 'Rollup applied blueprints', 'count', 'rollup_blueprints',
+        'options': [None, 'Rollup processing head', 'count', 'rollup_blueprints',
                     'rollup_blueprints', 'line'],
         'lines': [
             ["rollupAppliedBlueprint", "rollup blueprints", 'absolute', 1, 1]
         ]},
     'evm_applied_blueprints': {
-        'options': [None, 'EVM applied blueprints', 'count', 'evm_blueprints',
+        'options': [None, 'EVM rollup confirmed block', 'count', 'evm_blueprints',
                     'evm_blueprints', 'line'],
         'lines': [
             ["evmAppliedBlueprint", "evm blueprints", 'absolute', 1, 1]
@@ -43,9 +43,9 @@ class Service(LogService):
             for line in self._get_raw_data():
                 if search(r'head is now', line):
                     data['validatedBlocks'] += 1
-                if search(r'The rollup node kernel applied blueprint', line):
+                if search(r'Processing head', line):
                     data['rollupAppliedBlueprint'] += 1
-                if search(r'Applied a blueprint for level', line):
+                if search(r'rollup node confirmed block', line):
                     data['evmAppliedBlueprint'] += 1
             return data
         except (ValueError, AttributeError):

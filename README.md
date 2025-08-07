@@ -43,10 +43,12 @@ https://learn.netdata.cloud/docs/alerts-&-notifications/notifications/agent-disp
 2. Extract botId token
 3. Create group in Telegram
 4. Add the bot to the group
-5. Send message in group
-6. Call `https://api.telegram.org/bot<token>/getUpdates` and extract group id (chat_id is an ID with 9-10 decimals)
+5. Change the bot's group policy to allow accessing message in the group chat. 
+6. Send message in group
+7. Call `https://api.telegram.org/bot<token>/getUpdates` and extract chat id (chat_id is an ID with 9-10 decimals)
+8. Change the bot's group policy to disallow accessing message in the group chat. 
 
 Note: 
 Message by the bot can be sent using the following command:
-`curl https://api.telegram.org/bot<token>/sendMessage -F chat_id=<chat_id> -f text=<text>`
+`curl https://api.telegram.org/bot<token>/sendMessage -F chat_id=<chat_id> -F text=<text>`
 

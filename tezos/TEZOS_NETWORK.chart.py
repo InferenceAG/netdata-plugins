@@ -50,7 +50,7 @@ class Service(LogService):
             for line in self._get_raw_data():
                 if search(r'head is now', line):
                     data['validatedBlocks'] += 1
-                if search(r'injected attestation', line):
+                if search(r'attestation \(attesting', line):
                     data['injectedAttestations'] += 1
                 if search(r'injected preattestation', line):
                     data['injectedPreAttestations'] += 1
